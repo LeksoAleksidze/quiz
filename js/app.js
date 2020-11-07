@@ -196,7 +196,7 @@ function quizResult() {
      if( percentage < 30) {
         nickRandom = "შეეშვი გამოცანებს";
      }  else if (percentage > 30 && percentage < 50) {
-        nickRandom = "კიდევ იმეცადინე";
+        nickRandom = "თავსატეხა";
      } else if (percentage >= 50 && percentage < 80 ) {
         nickRandom = "ჭკვინკო";
      } else if (percentage >= 80 && percentage < 100) {

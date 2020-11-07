@@ -203,6 +203,12 @@ body {
     font-weight: 900 !important;
     text-align: center;
     padding: 35px 10px; }
+    @media (max-width: 500px) {
+      body .finish-box {
+        font-size: 15px; } }
+    @media (max-width: 350px) {
+      body .finish-box {
+        font-size: 12px; } }
     body .finish-box img {
       margin-top: 20px;
       width: 60%;

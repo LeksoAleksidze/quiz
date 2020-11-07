@@ -243,6 +243,12 @@ body {
         font-weight: 900!important;
         text-align: center;
         padding: 35px 10px;
+        @media (max-width: 500px){
+            font-size: 15px;
+        }
+        @media (max-width: 350px){
+            font-size: 12px;
+        }
         img {
             margin-top: 20px;
             width: 60%;
