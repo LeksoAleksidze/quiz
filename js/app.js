@@ -1,35 +1,30 @@
 
 const quiz = [
     {
-        q: 'რამდენი თვეა წელიწადში ? ',
-        options: ['1', '21', '12', '5'],
+        q: '3 ქათამი სამ დღეში 3 კვერცხს დებს. რამდენ კვერცხს დადებს 12 ქათამი 12 დღეში? ',
+        options: ['46', '27', '48', '15'],
         answer: 2
     },
     {
-        q: 'რაფერის არის ბანანი ?',
-        options: ['წთელი', 'ყვითელი', 'მწვანი', 'ლურჯი'],
+        q: ' თუ ღამის 12 საათზე მოდის წვიმა, შეგვიძლია თუ არა 72 საათის შემდეგ ველოდოთ მზიან ამინდს?',
+        options: ['დიახ', 'არა',],
         answer: 1
     },
     {
-        q: 'რამდენი საათია დღე-ღამეში ?',
-        options: ['2', '12', '14', '24'],
+        q: 'ერთი მეცნიერის წიგნის თაროზე დევს ორი წიგნი. პირველი წიგნი დგას მეორის მარცხნივ მის გვერდით. პირველ წიგნში 230 გვერდია, მეორეში 325. როგორ ფიქრობთ, რამდენი გვერდია პირველი წიგნის პირველ გვერდსა და მეორე წიგნის ბოლო გვერდს შორის?',
+        options: ['123', '2', '3', 'არცერთი პასუხი არაა სწორე'],
         answer: 3
     },
     {
-        q: '2 + 2 =',
-        options: ['4', '2', '1', '12'],
+        q: 'ჭრიჭინა, მთელი ზაფხულის მანძილზე, დღე-ღამის ნახევარს ძილში ატარებდა, დღე-ღამის მესამედს – ცეკვავდა, ხოლო მეექვსედ დროს - მღეროდა. დანარჩენ დროს ზამთრისთვის ემზადებოდა.',
+        options: ['24 (სთ)', '14 (სთ)', '22 (სთ)', '8 (სთ)'],
         answer: 0
     },
     {
-        q: 'როდის დავიბადე მე ;) ',
-        options: ['1999', '1970', '2002', '2003'],
+        q: 'რამდენი ფერია ცისარტყელაში ',
+        options: ['7', '6', '8', '5'],
         answer: 0
-    },
-    {
-        q: 'როგორი ბიჭია ავტორი ;) ',
-        options: ['ძალიან კარგი', 'ღვთაებრივი', 'საოცარი', 'ყველა პასუხი სწორეა'],
-        answer: 3
-    }
+    }    
 ]
 
 
@@ -40,10 +35,15 @@ const answerIndicatorContainer = document.querySelector('.anwswers-indicator');
 const homeBox = document.querySelector('.home-box');
 const quizBox = document.querySelector('.quiz-box');
 const resultBox = document.querySelector('.result-box');
+const finishBox = document.querySelector('.finish-box');
+
+const nickName = document.querySelector('.total-nickname');
 
 const inputName = document.querySelector('#inputName');
 const inputLastName = document.querySelector('#inputLastName');
 
+
+const imgQuestion = document.querySelector('#imgQuestion');
 
 let questionCounter = 0;
 let currentQuestions;
@@ -61,17 +61,23 @@ function setAvailableQuestion() {
     }
 }
 
+
 function getNewQuestion() {
     questionNumber.innerHTML = "შეკითხვა "  +  quiz.length +" დან "  + (questionCounter + 1);
+
 
     const questionIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
     currentQuestions = questionIndex;
     questionText.innerHTML = currentQuestions.q;
-    const index1 = availableQuestions.indexOf(questionIndex);
 
+    const index1 = availableQuestions.indexOf(questionIndex);
+ 
+   
     availableQuestions.splice(index1,1);
+
     
     const optionLen = currentQuestions.options.length;
+
     
     for(let i = 0; i < optionLen; i++){
         availableOptions.push(i);
@@ -95,8 +101,9 @@ function getNewQuestion() {
         option.style.animationDelay = animationDelay + 's';
         animationDelay = animationDelay + 0.12;
         option.className = "option";
-        optionContainer.appendChild(option);
         option.setAttribute("onclick","getResult(this)");
+        optionContainer.appendChild(option);
+       
 
     }
 
@@ -105,18 +112,20 @@ function getNewQuestion() {
     
 }
 
-function getResult(element) {
-    const id = parseInt(element.id);
+
+
+function getResult(e) {
+    const id = parseInt(e.id);
     
     if( id === currentQuestions.answer) {
-        element.classList.add('correct');
+        e.classList.add('correct');
 
         updateAnswerIndicator("correct");
         correctAnswers++;
        
 
     } else {
-        element.classList.add('wrong');
+        e.classList.add('wrong');
 
         updateAnswerIndicator("wrong");
 
@@ -131,6 +140,7 @@ function getResult(element) {
     unclickableOptions();
 
 }
+
 
 function answerIndicator() {
     answerIndicatorContainer.innerHTML = '';
@@ -163,6 +173,7 @@ function next() {
  
 }
 
+
 function quisOver() {
     quizBox.classList.add("hide");
     
@@ -171,8 +182,8 @@ function quisOver() {
 }
 
 function quizResult() {
-    // resultBox.querySelector(".your-name").innerHTML = saveName;
-    // resultBox.querySelector(".your-lastname").innerHTML = saveLastName;
+      
+    let nickRandom;
 
     resultBox.querySelector(".total-question").innerHTML = quiz.length;
     resultBox.querySelector(".total-correct").innerHTML = correctAnswers;
@@ -181,8 +192,23 @@ function quizResult() {
     const percentage = (correctAnswers / quiz.length) * 100;
     resultBox.querySelector(".total-percentage").innerHTML = percentage.toFixed() + " %";
     resultBox.querySelector(".total-score").innerHTML = correctAnswers + " / " + quiz.length;
+   
+     if( percentage < 30) {
+        nickRandom = "შეეშვი გამოცანებს";
+     }  else if (percentage > 30 && percentage < 50) {
+        nickRandom = "კიდევ იმეცადინე";
+     } else if (percentage >= 50 && percentage < 80 ) {
+        nickRandom = "ჭკვინკო";
+     } else if (percentage >= 80 && percentage < 100) {
+        nickRandom = "ტვინკო";
+     } else if (percentage === 100) {
+        nickRandom = "შერლოკა";
+     }
+
+    resultBox.querySelector(".total-nickname").innerHTML = nickRandom;
 
 }
+
 
 function resetQuiz() {
 
@@ -200,7 +226,7 @@ function tryAgain() {
 
     homeBox.classList.remove("hide");
     resetQuiz();
-    // startQuiz()    
+
     inputLastName.value = '';
     inputName.value = '';
 }
@@ -208,19 +234,15 @@ function tryAgain() {
 
 function goToHome() {
     resultBox.classList.add("hide");
-    homeBox.classList.remove("hide");
+    homeBox.classList.add("hide");
+    finishBox.classList.remove('hide')
     resetQuiz();
-    inputLastName.value = '';
-    inputName.value = '';
 }
 
 function startQuiz() {
 
 const saveName = inputName.value;
 const saveLastName = inputLastName.value;
-
-console.log(saveName)
-console.log(saveLastName)
 
 resultBox.querySelector(".your-name").innerHTML = saveName;
     resultBox.querySelector(".your-lastname").innerHTML = saveLastName;

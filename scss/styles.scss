@@ -18,7 +18,6 @@ body {
     margin: 0;
     font-family: "BPG Nino Mtavruli", sans-serif!important;
     padding: 10px;
-
     .custom-box {
         max-width: 700px;
         background-color: #fff;
@@ -89,13 +88,15 @@ body {
         }
     }
     .quiz-box {
+        box-shadow: inset 2px 2px 10px rgba($color: #000, $alpha: .5);
+        -webkit-box-shadow: inset 2px 2px 10px rgba($color: #000, $alpha: .5);
+        -ms-box-shadow: inset 2px 2px 10px rgba($color: #000, $alpha: .5);
         .quiestion-number {
             font-size: 18px;
-            color: $maincolor;
-            font-weight: 600;
+            font-weight: 900!important;
+            color: #000;
             border-bottom: 1px solid #cccccc;
             padding-bottom: 10px;
-            line-height: 25px;
         }
         .question-text {
             font-size: 22px;
@@ -132,10 +133,12 @@ body {
                     }
                 }
                 &.correct {
-                    background-color: green;
+                    background-color: rgb(5, 88, 5);
+                    color: #fff;
                 }
                 &.wrong {
-                    background-color: red;
+                    background-color: rgb(172, 8, 8);
+                    color: #fff;
                 }
                 &.already-answered {
                    pointer-events: none;
@@ -171,11 +174,32 @@ body {
                 border-radius: 50%;
                 margin-right: 3px;
                 margin-top: 15px;
+                position: relative;
                 &.correct {
-                    background-color: green;
+                    background-color: rgb(5, 88, 5);
+                    &::after {
+                        font-family: 'FontAwesome';
+                        content: '\f00c';
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%,-50%);
+                        color: #fff;
+                        font-size: 13px;
+                    }
                 }
                 &.wrong {
-                    background-color: red;
+                    background-color: rgb(172, 8, 8);
+                    &::after {
+                        font-family: 'FontAwesome';
+                        content: '\f00d';
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%,-50%);
+                        color: #fff;
+                        font-size: 13px;
+                    }
                 }
             }
         }
@@ -197,7 +221,7 @@ body {
             font-size: 30px;
             font-weight: 900!important;
             line-height: 42px;
-            color: $maincolor;
+            color: #000;
         }
         table {
             width: 100%;
@@ -212,6 +236,18 @@ body {
                 text-align: left;
                 font-size: 18px;
             }
+        }
+    }
+    .finish-box {
+        font-size: 20px;
+        font-weight: 900!important;
+        text-align: center;
+        padding: 35px 10px;
+        img {
+            margin-top: 20px;
+            width: 60%;
+            height: auto;
+            object-fit: cover;
         }
     }
 }
