@@ -272,7 +272,7 @@ function goToHome() {
 }
 
 
-const startMin = 0.1;
+const startMin = 1;
 let time = startMin * 60;
 let cleartInt;
 
