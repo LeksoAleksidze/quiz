@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap');
+
+$maincolor: #4d0000;
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-shadow: none;
+}
+body {
+    background-color: $maincolor;
+    font-size: 16px;
+    margin: 0;
+    font-family: "BPG Nino Mtavruli", sans-serif!important;
+    padding: 10px;
+
+    .custom-box {
+        max-width: 700px;
+        background-color: #fff;
+        margin:  40px auto;
+        padding: 30px;
+        border-radius: 10px;
+        &::after,
+        &::before {
+            content: '';
+            clear: both;
+            display: table;
+        }
+    }
+    .custom-box.hide {
+        display: none;
+    } 
+    .result-box.hide {
+        display: none;
+    } 
+    .home-box {
+        font-size: 18px;
+        color: #000000;
+        font-weight: 500;
+        margin-bottom: 15px;
+        line-height: 25px;
+        box-shadow: inset 2px 2px 10px rgba($color: #000, $alpha: .5);
+        font-weight: 800;
+        input {
+            height: 35px;
+            width: 180px;
+            padding: 0px 15px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            box-shadow: inset 2px 2px 10px rgba($color: #000000, $alpha: .22);
+            transition: all .3s ease-in-out;
+            text-transform: capitalize;
+            @media (max-width: 423px){
+                margin-top: 10px;                
+            }
+        }
+        p {
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            line-height: 22px;
+            color: #000000;
+            font-weight: 400;
+            span {
+                font-weight: 500;
+            }
+        }
+        .btn {
+            background-color: $maincolor;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 25px;
+            height: 35px;
+            width: 180px;
+        }
+    }
+    .quiz-box {
+        .quiestion-number {
+            font-size: 18px;
+            color: $maincolor;
+            font-weight: 600;
+            border-bottom: 1px solid #cccccc;
+            padding-bottom: 10px;
+            line-height: 25px;
+        }
+        .question-text {
+            font-size: 22px;
+            color: #000000;
+            line-height: 28px;
+            font-weight: 400;
+            padding-bottom: 20px 0;
+            margin: 10px 0;
+            font-weight: 900!important;
+        }
+        .option-container {
+            width: 100%;
+            float: left;
+            .option {
+                // background-color: #cccccc;
+                box-shadow: inset 2px 2px 10px rgba($color: #000000, $alpha: .22);
+                padding: 15px;
+                font-size: 16px;
+                color: #000000;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                cursor: pointer;
+                text-transform: capitalize;
+                transition: all .4s ease;
+                animation:  fadeIn 0.2s ease forwards;
+                @keyframes fadeIn {
+                    0% {
+                         opacity: 0;
+                    }
+                    100% {
+                        opacity: 1;
+                    }
+                }
+                &.correct {
+                    background-color: green;
+                }
+                &.wrong {
+                    background-color: red;
+                }
+                &.already-answered {
+                   pointer-events: none;
+                }
+                &:hover {
+                    box-shadow: inset 2px 2px 10px rgba($color: $maincolor, $alpha: 0.5);;
+                }
+            }
+        }
+        .next-question-btn {
+            .btn {
+                background-color: $maincolor;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                margin-top: 25px;
+                height: 35px;
+                width: 180px;
+            }
+        }
+        .anwswers-indicator {
+            margin-top: 20px;
+            border-top: 1px solid #cccccc;
+            div {
+                height: 20px;
+                width: 20px;
+                display: inline-block;
+                background-color: #cccccc;
+                border-radius: 50%;
+                margin-right: 3px;
+                margin-top: 15px;
+                &.correct {
+                    background-color: green;
+                }
+                &.wrong {
+                    background-color: red;
+                }
+            }
+        }
+    }
+    .result-box {
+        text-align: center;
+        .btn {
+            background-color: $maincolor;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 25px;
+            height: 35px;
+            width: 180px;
+        }
+        h1 {
+            font-size: 30px;
+            font-weight: 900!important;
+            line-height: 42px;
+            color: $maincolor;
+        }
+        table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+            td {
+                border: 1px solid #cccccc;
+                padding: 8px 15px;
+                font-weight: 500;
+                color: #000000;
+                width: 50%;
+                text-align: left;
+                font-size: 18px;
+            }
+        }
+    }
+}

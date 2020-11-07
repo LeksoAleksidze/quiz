@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ APP</title>
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="//cdn.web-fonts.ge/fonts/bpg-nino-mtavruli/css/bpg-nino-mtavruli.min.css">
+</head>
+<body>
+
+    <div class="home-box custom-box">
+        <h3>ინსტრუქცია:</h3>
+        <p>ყურადღებით წაიკითხეთ შეკითხვა, პასუხის არ მონიშვნის შემთხვევაში დაგაკლდებათ ქულა.</p>
+        <p>შეკითხვების რაოდენობა: <span class="total-question"></span></p>
+        <div class="d-flex justify-content-between align-items-center">
+            <input type="text" placeholder="თქვენი სახელი" id="inputName">
+            <input type="text" placeholder="თქვენი გვარი" id="inputLastName">
+            </div>
+        <button type="button" class="btn" onclick="startQuiz()">დაწყება</button>
+    </div>
+    
+    <div class="quiz-box custom-box hide">
+        <div class="quiestion-number">
+            <!-- Question 1 of 5 -->
+        </div>
+        <div class="question-text">
+            <!-- Which month come right before june ? -->
+        </div>
+        <div class="option-container">
+            <!-- <div class="option">July</div>
+            <div class="option">May</div>
+            <div class="option">September</div>
+            <div class="option">August</div> -->
+        </div>
+        <div class="next-question-btn">
+            <button type="button" class="btn" onclick="next()">Next</button>
+        </div>
+        <div class="anwswers-indicator">
+            <!-- <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> -->
+        </div>
+    </div>
+
+    <div class="result-box custom-box hide">
+        <h1>შედეგი</h1>
+        <table>
+            <tr>
+                <td>თქვენი სახელი</td>
+                <td><span class="your-name"></span></td>
+            </tr>
+            <tr>
+                <td>თქვენი გვარი</td>
+                <td><span class="your-lastname"></span></td>
+            </tr>
+            <tr>
+                <td>სულ კითხვების ოდენობა</td>
+                <td><span class="total-question"></span></td>
+            </tr>  
+            <tr>
+                <td>გავლილი კითხვები</td>
+                <td><span class="total-attempt"></span></td>
+            </tr>   
+            <tr>
+                <td>სწორე</td>
+                <td><span class="total-correct"></span></td>
+            </tr> 
+            <tr>
+                <td>შეცდომა</td>
+                <td><span class="total-wrong"></span></td>
+            </tr>           
+            <tr>
+                <td>პროცენტული შედეგი</td>
+                <td><span class="total-percentage"></span></td>
+            </tr>   
+            <tr>
+                <td>თქვენი ქულა</td>
+                <td><span class="total-score"></span></td>
+            </tr>   
+            </table>   
+            <button type="button" class="btn" onclick="tryAgain()">თავიდან</button>  
+            <button type="button" class="btn" onclick="goToHome()">დასრულება</button>      
+    </div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>

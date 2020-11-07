@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-shadow: none; }
+
+body {
+  background-color: #4d0000;
+  font-size: 16px;
+  margin: 0;
+  font-family: "BPG Nino Mtavruli", sans-serif !important;
+  padding: 10px; }
+  body .custom-box {
+    max-width: 700px;
+    background-color: #fff;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px; }
+    body .custom-box::after, body .custom-box::before {
+      content: '';
+      clear: both;
+      display: table; }
+  body .custom-box.hide {
+    display: none; }
+  body .result-box.hide {
+    display: none; }
+  body .home-box {
+    font-size: 18px;
+    color: #000000;
+    font-weight: 500;
+    margin-bottom: 15px;
+    line-height: 25px;
+    box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.5);
+    font-weight: 800; }
+    body .home-box input {
+      height: 35px;
+      width: 180px;
+      padding: 0px 15px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.22);
+      transition: all .3s ease-in-out;
+      text-transform: capitalize; }
+      @media (max-width: 423px) {
+        body .home-box input {
+          margin-top: 10px; } }
+    body .home-box p {
+      font-size: 16px;
+      margin-top: 15px;
+      margin-bottom: 20px;
+      line-height: 22px;
+      color: #000000;
+      font-weight: 400; }
+      body .home-box p span {
+        font-weight: 500; }
+    body .home-box .btn {
+      background-color: #4d0000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 25px;
+      height: 35px;
+      width: 180px; }
+  body .quiz-box .quiestion-number {
+    font-size: 18px;
+    color: #4d0000;
+    font-weight: 600;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 10px;
+    line-height: 25px; }
+  body .quiz-box .question-text {
+    font-size: 22px;
+    color: #000000;
+    line-height: 28px;
+    font-weight: 400;
+    padding-bottom: 20px 0;
+    margin: 10px 0;
+    font-weight: 900 !important; }
+  body .quiz-box .option-container {
+    width: 100%;
+    float: left; }
+    body .quiz-box .option-container .option {
+      box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.22);
+      padding: 15px;
+      font-size: 16px;
+      color: #000000;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      text-transform: capitalize;
+      transition: all .4s ease;
+      animation: fadeIn 0.2s ease forwards; }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+      body .quiz-box .option-container .option.correct {
+        background-color: green; }
+      body .quiz-box .option-container .option.wrong {
+        background-color: red; }
+      body .quiz-box .option-container .option.already-answered {
+        pointer-events: none; }
+      body .quiz-box .option-container .option:hover {
+        box-shadow: inset 2px 2px 10px rgba(77, 0, 0, 0.5); }
+  body .quiz-box .next-question-btn .btn {
+    background-color: #4d0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 25px;
+    height: 35px;
+    width: 180px; }
+  body .quiz-box .anwswers-indicator {
+    margin-top: 20px;
+    border-top: 1px solid #cccccc; }
+    body .quiz-box .anwswers-indicator div {
+      height: 20px;
+      width: 20px;
+      display: inline-block;
+      background-color: #cccccc;
+      border-radius: 50%;
+      margin-right: 3px;
+      margin-top: 15px; }
+      body .quiz-box .anwswers-indicator div.correct {
+        background-color: green; }
+      body .quiz-box .anwswers-indicator div.wrong {
+        background-color: red; }
+  body .result-box {
+    text-align: center; }
+    body .result-box .btn {
+      background-color: #4d0000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 25px;
+      height: 35px;
+      width: 180px; }
+    body .result-box h1 {
+      font-size: 30px;
+      font-weight: 900 !important;
+      line-height: 42px;
+      color: #4d0000; }
+    body .result-box table {
+      width: 100%;
+      margin: 30px 0;
+      border-collapse: collapse; }
+      body .result-box table td {
+        border: 1px solid #cccccc;
+        padding: 8px 15px;
+        font-weight: 500;
+        color: #000000;
+        width: 50%;
+        text-align: left;
+        font-size: 18px; }
