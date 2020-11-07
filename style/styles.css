@@ -4,7 +4,9 @@
   margin: 0;
   padding: 0;
   outline: 0;
-  box-shadow: none; }
+  box-shadow: none;
+  -ms-box-shadow: none;
+  -webkit-box-shadow: none; }
 
 body {
   background-color: #4d0000;
@@ -33,6 +35,8 @@ body {
     margin-bottom: 15px;
     line-height: 25px;
     box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.5);
+    -ms-box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.5);
     font-weight: 800; }
     body .home-box input {
       height: 35px;
@@ -42,6 +46,8 @@ body {
       outline: none;
       border-radius: 5px;
       box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.22);
+      -webkit-box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.22);
+      -ms-box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.22);
       transition: all .3s ease-in-out;
       text-transform: capitalize; }
       @media (max-width: 423px) {
@@ -86,6 +92,8 @@ body {
     float: left; }
     body .quiz-box .option-container .option {
       box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.22);
+      -webkit-box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.22);
+      -ms-box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.22);
       padding: 15px;
       font-size: 16px;
       color: #000000;
@@ -108,7 +116,9 @@ body {
       body .quiz-box .option-container .option.already-answered {
         pointer-events: none; }
       body .quiz-box .option-container .option:hover {
-        box-shadow: inset 2px 2px 10px rgba(77, 0, 0, 0.5); }
+        box-shadow: inset 2px 2px 10px rgba(77, 0, 0, 0.5);
+        -ms-box-shadow: inset 2px 2px 10px rgba(77, 0, 0, 0.5);
+        -webkit-box-shadow: inset 2px 2px 10px rgba(77, 0, 0, 0.5); }
   body .quiz-box .next-question-btn .btn {
     background-color: #4d0000;
     color: #fff;
