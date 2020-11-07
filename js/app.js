@@ -16,15 +16,40 @@ const quiz = [
         answer: 3
     },
     {
-        q: 'ჭრიჭინა, მთელი ზაფხულის მანძილზე, დღე-ღამის ნახევარს ძილში ატარებდა, დღე-ღამის მესამედს – ცეკვავდა, ხოლო მეექვსედ დროს - მღეროდა. დანარჩენ დროს ზამთრისთვის ემზადებოდა.',
+        q: 'ჭრიჭინა, მთელი ზაფხულის მანძილზე, დღე-ღამის ნახევარს ძილში ატარებდა, დღე-ღამის მესამედს – ცეკვავდა, ხოლო მეექვსედ დროს - მღეროდა. დანარჩენ დროს ზამთრისთვის ემზადებოდა. დღე-ღამის რა დროს ხარჯავდა ჭრიჭინა ზამთრის სამზადისზე?',
         options: ['24 (სთ)', '14 (სთ)', '22 (სთ)', '8 (სთ)'],
         answer: 0
     },
     {
         q: 'რამდენი ფერია ცისარტყელაში ',
-        options: ['7', '6', '8', '5'],
+        options: ['5', '6', '8', '7'],
+        answer: 3
+    },
+    {
+        q: 'ქილა მაგიდაზე ისე იდგა, რომ მისი ერთი ნახევარი მაგიდაზეა, ხოლო მეორე - ჰაერში იყო. ის მაგიდიდან ნახევარი საათის შემდეგ ჩამოვარდა რა იყო ქილაში და რატომ ჩამოვარდა ის, მხოლოდ გარკვეული დროის შემდეგ? ',
+        options: ['თაფლი', 'ყინული', 'წყალი', 'არცერთი პასუხი არაა სწორე'],
+        answer: 1
+    },
+    {
+        q: '10 + ( 10 * 2 ) / ( 10 / 2 ) = ',
+        options: ['14', '26', '18', '5'],
         answer: 0
-    }    
+    },   
+    {
+        q: 'ქეთის მამას 7 ქალიშვილი ჰყავდა და არცერთი ვაჟი. 6 გოგონას ერქვა: ნანა, ნენე, ნინი, ნინო, ნუნუ, ნონა. რა ერქვა მეშვიდე შვილს?',
+        options: ['ნინია', 'ნანუ', 'ნინა', ' ჩამონათვალში არ არის მისი სახელი.'],
+        answer: 2
+    },    
+    {
+        q: 'ფერმერს 19 ძროხა ჰყავდა და 9-ის გარდა ყველა მოუკვდა. რამდენი ძროხა დარჩა?',
+        options: ['7', '8', '9', '10'],
+        answer: 2
+    },
+    {
+        q: 'ალპინისტი თოკით დაეშვა 100 მეტრი სიმაღლის მთიდან, მინიმუმ რამდენი მეტრი თოკი უნდა ქონოდა ალპინისტს?',
+        options: ['110', '90', 'შეუძლებელია პასუხის გაცემა', '100'],
+        answer: 3
+    }
 ]
 
 
@@ -45,6 +70,11 @@ const inputLastName = document.querySelector('#inputLastName');
 
 const imgQuestion = document.querySelector('#imgQuestion');
 
+
+const timer = document.querySelector('.timer');
+
+
+
 let questionCounter = 0;
 let currentQuestions;
 let availableQuestions = [];
@@ -64,7 +94,7 @@ function setAvailableQuestion() {
 
 function getNewQuestion() {
     questionNumber.innerHTML = "შეკითხვა "  +  quiz.length +" დან "  + (questionCounter + 1);
-
+    
 
     const questionIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
     currentQuestions = questionIndex;
@@ -175,6 +205,7 @@ function next() {
 
 
 function quisOver() {
+    clearInterval(cleartInt);
     quizBox.classList.add("hide");
     
     resultBox.classList.remove("hide");
@@ -229,6 +260,7 @@ function tryAgain() {
 
     inputLastName.value = '';
     inputName.value = '';
+    window.location.reload();
 }
 
 
@@ -238,6 +270,34 @@ function goToHome() {
     finishBox.classList.remove('hide')
     resetQuiz();
 }
+
+
+const startMin = 0.1;
+let time = startMin * 60;
+let cleartInt;
+
+function startTimer() {
+
+     let minute = Math.floor(time / 60);
+     let seconds = time % 60;
+      timer.innerHTML = `0  ${minute} : ${seconds}`;
+     time--;
+     if( time < 10){
+         timer.style.color = "red";
+         timer.classList.add('alert-fade');
+        
+     } 
+      if(time < 0){
+
+        swal("თქვენი დრო ამოიწურა! იხილეთ შედეგი");
+        quisOver()
+        clearInterval(cleartInt);
+     }
+
+
+}
+
+
 
 function startQuiz() {
 
@@ -258,11 +318,13 @@ resultBox.querySelector(".your-name").innerHTML = saveName;
         setAvailableQuestion();
         getNewQuestion();
         answerIndicator();
+        cleartInt = setInterval(startTimer,1000);
     }
 
 
     
 }
+
 
 
 
