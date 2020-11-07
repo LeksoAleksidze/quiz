@@ -48,6 +48,7 @@ body {
       box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.22);
       -webkit-box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.22);
       -ms-box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.22);
+      border: 1px solid #4d0000;
       transition: all .3s ease-in-out;
       text-transform: capitalize; }
       @media (max-width: 423px) {
