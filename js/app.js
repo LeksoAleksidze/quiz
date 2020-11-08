@@ -21,6 +21,11 @@ const quiz = [
         answer: 0
     },
     {
+        q: '10 + ( 10 * 2 ) / ( 10 / 2 ) = ',
+        options: ['14', '26', '18', '5'],
+        answer: 0
+    }, 
+    {
         q: 'რამდენი ფერია ცისარტყელაში ',
         options: ['5', '6', '8', '7'],
         answer: 3
@@ -49,7 +54,22 @@ const quiz = [
         q: 'ალპინისტი თოკით დაეშვა 100 მეტრი სიმაღლის მთიდან, მინიმუმ რამდენი მეტრი თოკი უნდა ქონოდა ალპინისტს?',
         options: ['110', '90', 'შეუძლებელია პასუხის გაცემა', '100'],
         answer: 3
-    }
+    },
+    {
+        q: 'მიუმატეთ 1000-ს 40. შემდეგ კიდევ 1000. ახლა 30 და კვლავ 1000. შემდეგ მიუმატეთ 20. კიდევ 1000 და ბოლოს 10. რა არის თქვენი პასუხი?',
+        options: ['5200', '5000', 'შეუძლებელია პასუხის გაცემა', '4100'],
+        answer: 3
+    },
+    {
+        q: 'რა გადის ქალაქებსა და ველებს შორის, მაგრამ არ მოძრაობს?',
+        options: ['კაბელები', 'გზა', 'შეუძლებელია პასუხის გაცემა', 'სანიაღვრე სისტემა'],
+        answer: 1
+    },
+    {
+        q: '15 + ( 10 * 2 ) / ( 10 / 5 ) = ',
+        options: ['14', '25', '18', '5'],
+        answer: 1
+    }  
 ]
 
 
@@ -84,20 +104,46 @@ let attempt = 0;
 
 
 
-function setAvailableQuestion() {
-    const totalQuestion = quiz.length;
-    for(let i = 0; i < totalQuestion; i++ ) {
-        availableQuestions.push(quiz[i])
+// function setAvailableQuestion() {
+//     const totalQuestion = quiz.length;
+
+//     for(let i = 0; i < totalQuestion; i++ ) {
+//         availableQuestions.push(quiz[i]);
+//     }
+// }
+
+
+
+
+let gen = [];
+let tstArray = [];
+for( let i = 0; i < 5; i++){
+
+    let random_index;
+
+    while(!random_index){
+        let tmp = Math.floor(Math.random() * quiz.length);
+        if( !gen.filter((g) => quiz[tmp] == g).length)
+        random_index = tmp;
     }
+    gen.push(quiz[random_index]);
+    tstArray.push(quiz[random_index]);
 }
 
 
+availableQuestions = gen;
+
+
 function getNewQuestion() {
-    questionNumber.innerHTML = "შეკითხვა "  +  quiz.length +" დან "  + (questionCounter + 1);
+
+
+    questionNumber.innerHTML = "შეკითხვა " + tstArray.length + " დან  "  + (questionCounter + 1);
     
 
     const questionIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+ 
     currentQuestions = questionIndex;
+    
     questionText.innerHTML = currentQuestions.q;
 
     const index1 = availableQuestions.indexOf(questionIndex);
@@ -123,6 +169,7 @@ function getNewQuestion() {
         const optionIndex = availableOptions[Math.floor(Math.random() * availableOptions.length)];
         const index2 = availableOptions.indexOf(optionIndex);
         availableOptions.splice(index2, i);
+
        
 
         const option = document.createElement("div");
@@ -141,6 +188,20 @@ function getNewQuestion() {
     questionCounter++
     
 }
+
+
+let passAray = [];
+
+function pass(){
+
+    passAray.push(currentQuestions);
+    getNewQuestion();
+    console.log(passAray)
+}
+
+
+
+
 
 
 
@@ -174,7 +235,7 @@ function getResult(e) {
 
 function answerIndicator() {
     answerIndicatorContainer.innerHTML = '';
-    const totalQuestion = quiz.length;
+    const totalQuestion = availableQuestions.length + 1;
     for(let i = 0; i < totalQuestion; i++ ){
         const indicator = document.createElement("div");
         answerIndicatorContainer.appendChild(indicator);
@@ -195,12 +256,11 @@ function unclickableOptions() {
 
 function next() {
 
-    if(questionCounter === quiz.length) {
+    if(availableQuestions.length == 0) {
         quisOver();
     } else {
         getNewQuestion();
     }
- 
 }
 
 
@@ -212,17 +272,21 @@ function quisOver() {
     quizResult();
 }
 
+
+
 function quizResult() {
       
     let nickRandom;
 
-    resultBox.querySelector(".total-question").innerHTML = quiz.length;
+    resultBox.querySelector(".total-question").innerHTML = tstArray.length;
     resultBox.querySelector(".total-correct").innerHTML = correctAnswers;
     resultBox.querySelector(".total-wrong").innerHTML = attempt - correctAnswers;
     resultBox.querySelector(".total-attempt").innerHTML = attempt;
-    const percentage = (correctAnswers / quiz.length) * 100;
+    const percentage = (correctAnswers / tstArray.length) * 100;
     resultBox.querySelector(".total-percentage").innerHTML = percentage.toFixed() + " %";
-    resultBox.querySelector(".total-score").innerHTML = correctAnswers + " / " + quiz.length;
+    resultBox.querySelector(".total-score").innerHTML = correctAnswers + " / " + tstArray.length;
+    document.querySelector(".total-base").innerHTML = quiz.length;
+
    
      if( percentage < 30) {
         nickRandom = "შეეშვი გამოცანებს";
@@ -240,6 +304,7 @@ function quizResult() {
 
 }
 
+quizResult()
 
 function resetQuiz() {
 
@@ -275,6 +340,8 @@ function goToHome() {
 const startMin = 1;
 let time = startMin * 60;
 let cleartInt;
+
+
 
 function startTimer() {
 
@@ -315,7 +382,7 @@ resultBox.querySelector(".your-name").innerHTML = saveName;
 
         quizBox.classList.remove("hide");
     
-        setAvailableQuestion();
+        // setAvailableQuestion();
         getNewQuestion();
         answerIndicator();
         cleartInt = setInterval(startTimer,1000);
@@ -329,5 +396,10 @@ resultBox.querySelector(".your-name").innerHTML = saveName;
 
 
 window.onload = function() {
-    document.querySelector('.total-question').innerHTML = quiz.length;
+    document.querySelector('#timeMin').innerHTML = startMin;
+    document.querySelector('.total-question').innerHTML = availableQuestions.length;
 }
+
+
+
+
